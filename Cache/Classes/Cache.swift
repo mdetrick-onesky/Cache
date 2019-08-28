@@ -150,5 +150,14 @@ extension Cache where Key: Codable, Value: Codable {
     let data = try JSONEncoder().encode(self)
     try data.write(to: fileURL)
   }
+  
+  class func loadFromDisk(
+    for name: String,
+    at folderURL: URL = FileManager.default.temporaryDirectory
+    ) throws -> Self {
+    let fileURL = folderURL.appendingPathComponent(name + ".cache")
+    let data = try Data(contentsOf: fileURL)
+    return try JSONDecoder().decode(self, from: data)
+  }
 }
 
