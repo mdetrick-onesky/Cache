@@ -1,6 +1,0 @@
-use_frameworks!
-target 'Cache_Tests' do
-  pod 'Cache', :path => '../'
-  
-  
-end
